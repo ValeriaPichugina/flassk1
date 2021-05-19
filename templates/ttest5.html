@@ -5,6 +5,39 @@
 {% endblock %}
 
 {% block body %}
-<h1 style="text-align: center">Сальвадор Дали (1904-1989)</h1>
-<img src="/static/IMG_5187.jpg" width="300"/>
+<style>
+   div {
+    text-align: center;
+    overflow: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+   }
+   BODY {
+    background: #993366;
+   }
+</style>
+<body>
+    <div align="center">
+        <h1 style="text-align: center">Сальвадор Дали (1904-1989)</h1><Br>
+    </div>
+    <div align="left">
+        <p><img src="/static/IMG_5187.jpg" width="300" align="left" vspace="5" hspace="5"/><Br>
+            Сальвадо́р Дали́ — испанский живописец, график, скульптор, режиссёр и писатель.
+            Один из самых известных представителей сюрреализма.
+            Работал над фильмами: «Андалузский пёс», «Золотой век», «Заворожённый».
+        </p>
+    </div>
+    <div align="center">
+        <p>
+            <a class = "p-3 btn btn-outline-dark flex-grow-0" href="/ttest4">Назад</a>
+            <a class = "p-3 btn btn-outline-dark flex-grow-0" href="/home">Вперед</a>
+        </p>
+    </div>
+    <div>
+        <details>
+            <summary>Сад Земных наслаждений</summary>
+                Текст спойлера
+        </details>
+    </div>
+</body>
 {% endblock %}

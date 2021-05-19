@@ -5,6 +5,39 @@
 {% endblock %}
 
 {% block body %}
-<h1 style="text-align: center">Тициан (1490-1576)</h1>
-<img src="/static/IMG_5171.jpg" width="300"/>
+<style>
+   div {
+    text-align: center;
+    overflow: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+   }
+   BODY {
+    background: #FFCCFF;
+   }
+</style>
+<body>
+    <div align="center">
+        <h1 style="text-align: center">Тициан (1490-1576)</h1><Br>
+    </div>
+    <div align="left">
+        <p><img src="/static/IMG_5171.jpg" width="300" align="left" vspace="5" hspace="5"/><Br>
+            Тициа́н Вече́ллио — итальянский живописец, крупнейший представитель венецианской школы эпохи
+            Высокого и Позднего Возрождения. Имя Тициана стоит в одном ряду с такими художниками Возрождения,
+            как Микеланджело, Леонардо да Винчи и Рафаэль.
+        </p>
+    </div>
+    <div align="center">
+        <p>
+            <a class = "p-3 btn btn-outline-secondary flex-grow-0" href="/test4">Назад</a>
+            <a class = "p-3 btn btn-outline-secondary flex-grow-0" href="/test">Вперед</a>
+        </p>
+    </div>
+    <div>
+        <details>
+            <summary>Сад Земных наслаждений</summary>
+                Текст спойлера
+        </details>
+    </div>
+</body>
 {% endblock %}

@@ -5,17 +5,42 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <title>{% block title %}{% endblock %}</title>
 </head>
+<style type="text/css">
+   H1 {
+    font-family: TimesNewRoman;
+    font-size: 250%;
+    font-weight: 500;
+   }
+   H5 {
+    font-family: TimesNewRoman;
+    font-size: 200%;
+    font-weight: 500;
+   }
+   A {
+    font-family: TimesNewRoman;
+    font-weight: 300;
+   }
+   P {
+    font-family: TimesNewRoman;
+    font-size: 150%;
+    font-weight: 500;
+   }
+   summary {
+    font-family: TimesNewRoman;
+    font-size: 150%;
+    font-weight: 500;
+   }
+</style>
 <body>
-    <div class = "d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom">
-        <h5 class = "my-0 mr-md-auto font-weight-normal p-2 text-red">Название.ru</h5>
+    <div class = "d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom">
+        <h5 class = "my-0 mr-md-auto font-weight-normal p-2 text-white">Искусство во всех красках.ru</h5>
         <nav class = "my-2 my-md-0 mr-md-3">
-            <a class = "p-2 text-dark" href="/">Главная</a>
-            <a class = "p-2 text-dark" href="/about">XV-XVI</a>
-            <a class = "p-2 text-dark" href="/test">XIX-XX</a>
+            <a class = "btn btn-success" href="/">Главная</a>
+            <a class = "btn btn-primary" href="/about">XV-XVI</a>
+            <a class = "btn btn-danger" href="/test">XIX-XX</a>
         </nav>
     </div>
     {% block body %}{% endblock %}

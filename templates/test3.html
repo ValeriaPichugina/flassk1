@@ -5,6 +5,39 @@
 {% endblock %}
 
 {% block body %}
-<h1 style="text-align: center">Альбрехт Дюрер (1471-1528)</h1>
-<img src="/static/IMG_5175.jpg" width="300"/>
+<style>
+   div {
+    text-align: center;
+    overflow: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+   }
+   BODY {
+    background: #CCFFCC;
+   }
+</style>
+<body>
+    <div align="center">
+        <h1 style="text-align: center">Альбрехт Дюрер (1471-1528)</h1><Br>
+    </div>
+    <div align="left">
+        <p><img src="/static/IMG_5175.jpg" width="300" align="left" vspace="5" hspace="5"/><Br>
+            А́льбрехт Дю́рер — немецкий живописец, гравёр и график, один из величайших мастеров
+            западноевропейского Ренессанса. Признан крупнейшим европейским мастером ксилографии,
+            поднявшим её на уровень настоящего искусства.
+        </p>
+    </div>
+    <div align="center">
+        <p>
+            <a class = "p-3 btn btn-outline-success flex-grow-0" href="/test2">Назад</a>
+            <a class = "p-3 btn btn-outline-success flex-grow-0" href="/test4">Вперед</a>
+        </p>
+    </div>
+    <div>
+        <details>
+            <summary>Сад Земных наслаждений</summary>
+                Текст спойлера
+        </details>
+    </div>
+</body>
 {% endblock %}

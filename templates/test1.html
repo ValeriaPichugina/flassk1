@@ -5,6 +5,40 @@
 {% endblock %}
 
 {% block body %}
-<h1 style="text-align: center">Иероним Босх (1450-1516)</h1>
-<img src="/static/IMG_5177.jpg" width="300"/>
+<style>
+   div {
+    text-align: center;
+    overflow: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+   }
+   BODY {
+    background: #FFFFCC;
+   }
+</style>
+<body>
+    <div align="center">
+        <h1 style="text-align: center">Иероним Босх (1450-1516)</h1><Br>
+    </div>
+    <div align="left">
+        <p><img src="/static/IMG_5177.jpg" width="300" align="left" vspace="5" hspace="5"/><Br>
+            Еру́н Анто́нисон ван А́кен; лат. Hieronymus Bosch; около 1450—1516) —
+            нидерландский потомственный художник, один из крупнейших мастеров периода Северного Возрождения.
+            Из творчества художника сохранилось около десяти картин и двенадцати рисунков.
+            Был посвящён в члены Братства Богоматери.
+        </p>
+    </div>
+    <div>
+        <p>
+            <a class = "p-3 btn btn-outline-warning flex-grow-0" href="/about">Назад</a>
+            <a class = "p-3 btn btn-outline-warning flex-grow-0" href="/test2">Вперед</a>
+        </p>
+    </div>
+    <div>
+        <details>
+            <summary>Сад Земных наслаждений</summary>
+                Текст спойлера
+        </details>
+    </div>
+</body>
 {% endblock %}

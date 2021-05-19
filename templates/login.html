@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<style>
+body {
+    background: url(/static/IMG_5244.JPG);
+    background-size: cover;
+}
+</style>
 <div class="column is-4 is-offset-4">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
-    <h3 class="title">Вход</h3>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/>
+    <h1 class="title" align="center">Вход</h1>
     <div class="box">
         <form method="POST" action="/login">
             <div class="field">

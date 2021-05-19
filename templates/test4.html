@@ -5,6 +5,39 @@
 {% endblock %}
 
 {% block body %}
-<h1 style="text-align: center">Питер Брейгель Старший (-1569)</h1>
-<img src="/static/IMG_5179.jpg" width="300"/>
+<style>
+   div {
+    text-align: center;
+    overflow: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+   }
+   BODY {
+    background: #CCFFFF;
+   }
+</style>
+<body>
+    <div align="center">
+        <h1 style="text-align: center">Питер Брейгель Старший (-1569)</h1><Br>
+    </div>
+    <div align="left">
+        <p><img src="/static/IMG_5179.jpg" width="300" align="left" vspace="5" hspace="5"/><Br>
+            Пи́тер Бре́йгель Ста́рший, известный также под прозвищем «Мужицкий» — нидерландский живописец и график,
+            самый известный и значительный из носивших эту фамилию художников. Мастер пейзажа и жанровых сцен.
+            Отец художников Питера Брейгеля Младшего и Яна Брейгеля Старшего.
+        </p>
+    </div>
+    <div align="center">
+        <p>
+            <a class = "p-3 btn btn-outline-info flex-grow-0" href="/test3">Назад</a>
+            <a class = "p-3 btn btn-outline-info flex-grow-0" href="/test5">Вперед</a>
+        </p>
+    </div>
+    <div>
+        <details>
+            <summary>Сад Земных наслаждений</summary>
+                Текст спойлера
+        </details>
+    </div>
+</body>
 {% endblock %}

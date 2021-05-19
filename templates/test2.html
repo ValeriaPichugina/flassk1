@@ -5,6 +5,39 @@
 {% endblock %}
 
 {% block body %}
-<h1 style="text-align: center">Леонардо да Винчи (1472-1519)</h1>
-<img src="/static/IMG_5173.jpg" width="300"/>
+<style>
+   div {
+    text-align: center;
+    overflow: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+   }
+   BODY {
+    background: #FFCCCC;
+   }
+</style>
+<body>
+    <div align="center">
+        <h1 style="text-align: center">Леонардо да Винчи (1472-1519)</h1><Br>
+    </div>
+    <div align="left">
+        <p><img src="/static/IMG_5173.jpg" width="300" align="left" vspace="5" hspace="5"/><Br>
+            Леона́рдо ди сер Пье́ро да Ви́нчи — итальянский художник и учёный, изобретатель,
+            писатель, музыкант, один из крупнейших представителей искусства
+            Высокого Возрождения, яркий пример «универсального человека».
+        </p>
+    </div>
+    <div align="center">
+        <p>
+            <a class = "p-3 btn btn-outline-danger flex-grow-0" href="/test2">Назад</a>
+            <a class = "p-3 btn btn-outline-danger flex-grow-0" href="/test3">Вперед</a>
+        </p>
+    </div>
+    <div>
+        <details>
+            <summary>Заголовок спойлера</summary>
+                Текст спойлера
+        </details>
+    </div>
+</body>
 {% endblock %}
