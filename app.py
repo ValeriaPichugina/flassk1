@@ -3,6 +3,8 @@ from flask import Flask, render_template, url_for, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+import random
+import copy
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret-key-goes-here'
@@ -179,6 +181,76 @@ def login_post():
         return redirect(url_for('app.login'))
 
     return redirect(url_for('app.profile'))
+
+
+original_questions = {
+ 'Soft Self-Portrait with Grilled Bacon': ['Dali', 'Malevich', 'Picasso', 'Chagall', 'Kandinsky'],
+ 'Absinthe Drinker': ['Picasso', 'Dali', 'Kandinsky', 'Chagall', 'Malevich'],
+ 'Blue Lovers': ['Chagall', 'Kandinsky', 'Malevich', 'Dali', 'Picasso'],
+ 'First Abstract Watercolor': ['Kandinsky', 'Picasso', 'Dali', 'Chagall', 'Malevich'],
+ 'Black Square': ['Malevich', 'Dali', 'Chagall', 'Kandinsky', 'Picasso'],
+ 'Violinist': ['Chagall', 'Malevich', 'Kandinsky', 'Dali', 'Picasso'],
+ 'Ghost Carriage': ['Dali', 'Kandinsky', 'Picasso', 'Chagall', 'Malevich']
+}
+questions = copy.deepcopy(original_questions)
+
+original_questions1 = {
+ 'Garden of Earthly Delights': ['Bosch', 'da Vinci', 'Durer', 'Bruegel', 'Tiziano'],
+ 'Tabletop of the Seven Deadly Sins and the Four Last Things': ['Bosch', 'da Vinci', 'Durer', 'Bruegel', 'Tiziano'],
+ 'Mona Lisa': ['da Vinci', 'Bosch', 'Durer', 'Bruegel', 'Tiziano'],
+ 'Madonna of the Pear': ['Durer', 'Bosch', 'da Vinci', 'Bruegel', 'Tiziano'],
+ 'Tower of Babel': ['Bruegel', 'Bosch', 'da Vinci', 'Durer', 'Tiziano'],
+ 'The hunters in the Snow': ['Bruegel', 'Bosch', 'da Vinci', 'Durer', 'Tiziano'],
+ 'Venus Blindfolding Cupid': ['Tiziano', 'Bosch', 'da Vinci', 'Durer', 'Bruegel']
+}
+questions1 = copy.deepcopy(original_questions1)
+
+
+def shuffle(q):
+    selected_keys = []
+    i = 0
+    while i < len(q):
+        current_selection = random.choice(q.keys())
+        if current_selection not in selected_keys:
+            selected_keys.append(current_selection)
+            i = i+1
+    return selected_keys
+
+
+@app.route('/quiz1')
+def quiz():
+    questions_shuffled = shuffle(questions)
+    for i in questions.keys():
+        random.shuffle(questions[i])
+    return render_template('quiz1.html', q=questions_shuffled, o=questions)
+
+
+@app.route('/quiz', methods=['POST'])
+def quiz_answers():
+    correct = 0
+    for i in questions.keys():
+        answered = request.form[i]
+        if original_questions[i][0] == answered:
+            correct = correct+1
+    return render_template("quiz.html", f=correct)
+
+
+@app.route('/quizz1')
+def quizz():
+    questions_shuffled1 = shuffle(questions1)
+    for i in questions1.keys():
+        random.shuffle(questions1[i])
+    return render_template('quizz1.html', q=questions_shuffled1, o=questions1)
+
+
+@app.route('/quizz', methods=['POST'])
+def quizz_answers():
+    correct1 = 0
+    for i in questions1.keys():
+        answered = request.form[i]
+        if original_questions1[i][0] == answered:
+            correct1 = correct1+1
+    return render_template("quizz.html", f=correct1)
 
 
 if __name__ == "__main__":
