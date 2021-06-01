@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Квиз
+{% endblock %}
+
+{% block body %}
+<style>
+   div {
+    text-align: center;
+    overflow: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+   }
+   BODY {
+    background: #669999;
+   }
+</style>
+<div>
+    <h1>Квиз по главе XIX-XX</h1>
+    <form action='/quizz' method='POST'>
+        <ol>
+            {% for i in q %}
+                <li><h5>Who is the author of the painting "<u>{{i}}</u>"?</h5></li>
+                {% for j in o[i] %}
+                    <p><input type='radio' value='{{j}}' name='{{i}}'/>{{j}}</p>
+                {% endfor %}
+            {% endfor %}
+        </ol>
+        <Br>
+        <input type="submit" value="Send"/>
+        <Br>
+    </form>
+</div>
+{% endblock %}
