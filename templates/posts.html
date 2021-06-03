@@ -1,0 +1,25 @@
+{% block title %}
+Регистрация на сайте
+{% endblock %}
+
+{% block body %}
+<style>
+body {
+    background: url(/static/images/IMG_5244.JPG);
+    background-size: cover;
+}
+</style>
+<div class = "container mt-5">
+    <h1 style="text-align: center" class="text-white">Список отзывов и предложений</h1>
+    {% for post in posts %}
+        <a href="{{ url_for('posts', post_id=post['id']) }}">
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <hr>
+    {% endfor %}
+</div>
+<div class = "container mt-5">
+    <a class = "btn btn-info" href="/home">Вернуться в главное меню</a>
+</div>
+{% endblock %}

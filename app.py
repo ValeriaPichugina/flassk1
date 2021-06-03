@@ -1,52 +1,22 @@
 # coding=utf-8
 from flask import Flask, render_template, url_for, request, redirect, flash
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from werkzeug.security import generate_password_hash, check_password_hash
+import sqlite3
 import random
 import copy
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret-key-goes-here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///fflask.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
 
-class Article(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    intro = db.Column(db.String(300), nullable=False)
-    text = db.Column(db.Text, nullable=False)
-    date = db.Column(db.DateTime, default=datetime.utcnow)
-
-    def __repr__(self):
-        return '<Article %r>' % self.id
-
-
-class User(db.Model):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(100))
-    username = db.Column(db.String(50), nullable=False, unique=True)
-    email = db.Column(db.String(100), nullable=False, unique=True)
-    password_hash = db.Column(db.String(100), nullable=False)
-    created_on = db.Column(db.DateTime(), default=datetime.utcnow)
-    updated_on = db.Column(db.DateTime(), default=datetime.utcnow, onupdate=datetime.utcnow)
-
-    def __repr__(self):
-        return "<{}:{}>".format(self.id, self.username)
-
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+def get_db_connection():
+    conn = sqlite3.connect('database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 @app.route('/')
 @app.route('/home')
-def index():
+def indexa():
     return render_template("index.html")
 
 
@@ -55,28 +25,35 @@ def about():
     return render_template("about.html")
 
 
+@app.route('/create-article', methods=('GET', 'POST'))
+def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+
+        if not title:
+            flash('Title is required!')
+        else:
+            conn = get_db_connection()
+            conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)', (title, content))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('posts'))
+
+    return render_template("create-article.html")
+
+
+@app.route('/posts')
+def index():
+    conn = get_db_connection()
+    posts = conn.execute('SELECT * FROM posts').fetchall()
+    conn.close()
+    return render_template("posts.html", posts=posts)
+
+
 @app.route('/test')
 def test():
     return render_template("test.html")
-
-
-@app.route('/create-article', methods=['POST', 'GET'])
-def create_article():
-    if request.method == "POST":
-        title = request.form['title']
-        intro = request.form['intro']
-        text = request.form['text']
-
-        article = Article(title=title, intro=intro, text=text)
-
-        try:
-            db.session.add(article)
-            db.session.commit()
-            return redirect('/')
-        except:
-            return "Произошла ошибка"
-    else:
-        return render_template("create-article.html")
 
 
 @app.route('/ttest1')
@@ -127,60 +104,6 @@ def test4():
 @app.route('/test5')
 def test5():
     return render_template("test5.html")
-
-
-@app.route('/profile')
-def profile():
-    return render_template("profile.html")
-
-
-@app.route('/login')
-def login():
-    return render_template("login.html")
-
-
-@app.route('/signup')
-def signup():
-    return render_template("signup.html")
-
-
-@app.route('/signup', methods=['POST'])
-def signup_post():
-    email = request.form.get('email')
-    name = request.form.get('name')
-    password = request.form.get('password')
-
-    user = User.query.filter_by(email=email).first()
-
-    if user:
-        return redirect(url_for('app.signup'))
-
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
-
-    db.session.add(new_user)
-    db.session.commit()
-
-    return redirect(url_for('app.login'))
-
-
-@app.route('/logout')
-def logout():
-    return render_template("logout.html")
-
-
-@app.route('/login', methods=['POST'])
-def login_post():
-    email = request.form.get('email')
-    password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
-
-    user = User.query.filter_by(email=email).first()
-
-    if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again.')
-        return redirect(url_for('app.login'))
-
-    return redirect(url_for('app.profile'))
 
 
 original_questions = {
